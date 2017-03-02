@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.joslittho.spitali"
+        minSdkVersion 19
+        targetSdkVersion 25
+        vectorDrawables.useSupportLibrary = true
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// extensions
+ext {
+    butterknifeVersion = "8.4.0"
+    materialDrawerVersion = "5.6.0"
+    supportLibraryVersion = "25.0.1"
+    playServicesVersion = "10.0.1"
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // butterknife
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    // design
+    compile "com.android.support:design:$supportLibraryVersion"
+
+    // material drawer
+    compile( "com.mikepenz:materialdrawer:$materialDrawerVersion@aar" ) {
+        transitive = true
+    }
+
+    // support library
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+
+    // test
+    testCompile 'junit:junit:4.12'
+}
